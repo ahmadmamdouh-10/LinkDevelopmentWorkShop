@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Matgary.DAL.GeneralSetting>
+
+@{
+    /**/
+
+    ViewBag.Title = "General Settings";
+}
+
+<h2 class="alert alert-info">General Settings</h2>
+@if (Session["Role"].ToString() == "SuperAdmin")
+{
+    <div style="padding: 20px;border: 1px solid blue;margin-bottom: 20px;">
+        <div class="m-auto" style="width: 420px">
+            @using (Html.BeginForm("Index", "GeneralSettings", FormMethod.Get, new { id = "StoreForm" }))
+            {
+                <div class="d-flex align-items-center">
+                    <label class="mr-1">Filter By Store : </label>
+                    @Html.DropDownList("store", ViewBag.Stores as SelectList, "Select Store", new { @class = "form-control" })
+                </div>
+            }
+        </div>
+    </div>
+
+}
+
+
+<table class="table">
+    <tr>  
+        <th>
+            @Html.DisplayNameFor(model => model.FreeDeliveryFeesOrderTotal)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FreeDeliveryFeesOrderTotal)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" }) |
+            </td>
+        </tr>
+    }
+
+</table>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('select#store').change(function () {
+                $('#StoreForm').submit();
+            });
+        });
+    </script>
+}

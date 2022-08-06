@@ -1,0 +1,25 @@
+﻿@model Matgary.DAL.BackgroundsAndVideos
+@{
+    ViewBag.Title = "Backgrounds & Videos";
+}
+
+<div class="jumbotron">
+    <h2>Backgrounds & Videos</h2>
+    <br />
+
+    <h3>Images</h3>
+    <hr />
+    <p>@Html.ActionLink("Welcome Page Background Image", "WelcomePageBackgroundImage", "Settings",new{id=Model.Id}, new { @class = "btn btn-primary btn-lg" })</p>
+    <p>@Html.ActionLink("LogIn Page Background Image", "LogInPageBackgroundImage", "Settings", new { id = Model.Id }, new { @class = "btn btn-primary btn-lg" })</p>
+    <p>@Html.ActionLink("Registration Page Background Image", "RegistrationPageBackgroundImage", "Settings", new { id = Model.Id }, new { @class = "btn btn-primary btn-lg" })</p>
+    <p>@Html.ActionLink("Home Page Background Image", "HomePageBackgroundImage", "Settings", new { id = Model.Id }, new { @class = "btn btn-primary btn-lg" })</p>
+    <br />
+
+    <h3>Videos</h3>
+    <hr />
+    <p>@Html.ActionLink("Home Page Background Video", "HomePageBackgroundVideo", "Settings", new { id = Model.Id }, new { @class = "btn btn-primary btn-lg" })</p>
+</div>
+
+<div class="row">
+
+</div>

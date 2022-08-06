@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="banner-header banner-lbook3 space-30" style="height: 200px; background-color: lightgray;">
+    <div class="text">
+      <h3>{{'About Us' }}</h3>
+      <p><a href="#" title="Home">Home</a><i class="fa fa-caret-right"></i>{{'About Us'}}</p>
+    </div>
+  </div>
+</div>
+<!-- End container -->
+<div class="page-about">
+  <div class="container container-ver2 space-50 head-about">
+    <div class="row">
+      <div class="col-md-6">
+        <img class="img-responsive" src="{{aboutUs?.ImageUrl}}" alt="images">
+      </div>
+      <!--End col-md-6-->
+      <div class="col-md-6 pd-left-10">
+        <h3>{{'About Us'}}</h3>
+        <p [innerHTML]='aboutUs?.Description'></p>
+        <!--End slider-->
+      </div>
+      <!--End col-md-6-->
+    </div>
+    <!--End row-->
+  </div>
+  <!--End container-->

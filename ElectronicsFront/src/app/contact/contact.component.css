@@ -1,0 +1,24 @@
+.get-in-touch {
+    color: #00cca3;
+}
+
+.send-massage {
+    border: 1.5px solid #00cca3;
+    color: #00cca3;
+    background: #fff;
+    font-size: 18px;
+}
+
+.send-massage:hover {
+    background: #00cca3;
+    color: #fff;
+}
+
+.branch {
+    color: #ff8533 !important;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+    border: 1px solid red;
+}

@@ -1,0 +1,57 @@
+.title-section {
+    margin-top: 50px;
+}
+
+.item-entry .item-title a {
+    color: #ff8533;
+}
+
+.title-section h2 {
+    border-left: 4px solid #ff8533;
+    color: #00cca3;
+}
+
+.title-section.text-center h2:after {
+    background: #ff8533;
+}
+.description {
+    display: none;
+    /* display: block; */
+}
+
+.dropdown:hover .description {
+    display: block;
+}
+
+.add-cart {
+    margin-top: 15px;
+}
+
+.add-cart a {
+    padding: 5px 10px;
+    border: 1.5px solid #ff8533;
+    color: #00cca3;
+    text-decoration: none;
+}
+
+.add-cart a:hover {
+    background-color: #ff8533;
+    border: 1.5px solid #ff8533;
+    color: #fff;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: 100%;
+    top: 0px;
+    width: 100%;
+}
+
+.item-title a:hover{
+    cursor: pointer;
+    text-decoration: underline;
+} 
+.pop-image:hover{
+    cursor: pointer;
+
+}

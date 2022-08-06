@@ -1,0 +1,41 @@
+.site-blocks-cover {
+    top: 60px;
+}
+
+.site-blocks-cover .title {
+    color: #ff8533;
+}
+
+.shop-now:hover {
+    background-color: #ff8533;
+    color: #fff;
+}
+
+.site-block-cover-content .title {
+    font-size: 55px;
+}
+
+.site-block-cover-content .title span {
+    color: #00cca3;
+}
+
+.img-fluid {
+    height: 100%;
+}
+
+.align-self-end {
+    height: 100%;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+    width: 30px;
+    height: 50px;
+    background-color: black;
+}
+
+@media (min-width: 768px) {
+    .site-blocks-cover .site-block-cover-content {
+        margin-top: 35%;
+    }
+}

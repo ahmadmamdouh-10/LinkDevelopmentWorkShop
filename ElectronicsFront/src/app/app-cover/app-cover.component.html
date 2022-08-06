@@ -1,0 +1,11 @@
+<div class="tp-banner-container hidden-dot ver1" *ngIf="offers && offers.length > 0">
+  <div class="tp-banner">
+    <ul>
+      <li *ngFor="let offer of offers;let i=index" data-transition="random" data-slotamount="6" data-masterspeed="1000">
+        <img src="../../assets/images/banner-home3.jpg"
+          alt="Futurelife-home2-slideshow" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
+      </li>
+    </ul>
+    <div class="tp-bannertimer"></div>
+  </div>
+</div>

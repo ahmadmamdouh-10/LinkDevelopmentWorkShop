@@ -1,0 +1,140 @@
+<div class="mb-5">
+  <div class="bg-light py-3 cart-page">
+    <div class="container ">
+      <div class="row">
+        <div class="col-md-3 mb-0 text-center">
+          <strong class="text-black myTitle">{{'My profile'}}</strong>
+        </div>
+        <div class="col-md-9 mb-0">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile">
+    <div class="container rounded bg-white mb-5">
+      <div class="row">
+        <div class="col-md-3 border-right">
+
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+            <img onclick="toMyProfile()" class="rounded-circle mt-5" width="150px"
+              src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+            <h5 class="font-weight-bold">{{user.Name}}</h5><span class="text-black-50">{{user.Email}}</span><span>
+            </span>
+          </div>
+
+          <div class="my-list">
+            <ul>
+              <li class="border mb-2">
+                <i class="fa fa-heart fa-lg {{lang == 'ar' ? 'ml-2':''}}"></i>
+                <a class="text-secondary fs-4">{{'My favorite'}}</a>
+              </li>
+              <li class="border mb-2">
+                <i class="fa fa-bookmark fa-lg {{lang == 'ar' ? 'ml-2':''}}"></i>
+                <a class="text-secondary fs-4">{{'My reviews'}}</a>
+              </li>
+              <li class="border mb-2">
+                <i class="fa fa-sort fa-2x {{lang == 'ar' ? 'ml-2':''}}"></i>
+                <a class="text-secondary fs-4">{{'My orders'}}</a>
+              </li>
+              <li class="border mb-2">
+                <i class="fa fa-sign-out fa-lg {{lang == 'ar' ? 'ml-2':''}}"></i>
+                <a style="cursor: pointer;" (click)="logout()" class="text-secondary fs-4">{{'Log Out'}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-9">
+          <div class="account">
+            <h2 class="mb-3">{{'Account setting'}}:</h2>
+            <div class="account-info">
+              <form [formGroup]="profileFormGroup">
+                <div class="account-information row py-5" style="box-shadow: 4px 4px 5px 4px #ccc;">
+                  <div class="col-md-12">
+                    <!-- <h6>Account Information</h6> -->
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="mb-1 text-muted">{{'FullName'}} </label>
+                          <input type="text" class="form-control {{lang =='ar' ? 'mr-1':'ml-1'}} border border-gray"
+                            formControlName="name">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="mb-1 text-muted">{{'Email'}}</label>
+                          <input type="text"
+                            class="form-control {{lang =='ar' ? 'mr-1':'ml-1'}} border border-gray bg-light"
+                            formControlName="email">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="mb-1 text-muted">{{'Gender'}}</label>
+                          <select class="form-control {{lang =='ar' ? 'mr-1':'ml-1'}} border border-gray"
+                            formControlName="gender">
+                            <option value="1">{{'Male'}}</option>
+                            <option value="2">{{'Female'}}</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="mb-1 text-muted">{{'PhoneNumber'}}</label>
+                          <input type="text" class="form-control {{lang =='ar' ? 'mr-1':'ml-1'}} border"
+                            formControlName="phone">
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="account-information row p-2 mt-3" style="box-shadow: 4px 4px 5px 4px #ccc;">
+                  <div class="col-md-12">
+                    <!-- <h6>Account Information</h6> -->
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="mb-1 text-muted">{{'Password'}} </label>
+                          <input type="password" class="form-control {{lang =='ar' ? 'mr-1':'ml-1'}} border border-gray"
+                            formControlName="password">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="mb-1 text-muted">{{'Confirm password'}}</label>
+                          <input type="password" class="form-control {{lang =='ar' ? 'mr-1':'ml-1'}} border border-gray"
+                            formControlName="confirmPassword">
+                          <span
+                            *ngIf="profileFormGroup.controls['confirmPassword'].touched && profileFormGroup.hasError('notSame')"
+                            class="text-danger">{{'Password and confirm password not same'}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="account-information row p-2 mt-3" style="box-shadow: 4px 4px 5px 4px #ccc;">
+                  <div class="col-md-12">
+                    <div class=" ">
+                      <button type="submit" class="btn btn-primary w-75 mx-auto d-block  myBtn"
+                        >{{'Save'}}</button>
+
+                    </div>
+                  </div>
+
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

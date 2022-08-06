@@ -1,0 +1,22 @@
+.or {
+    margin: 50px auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    background-color: #80b435;
+}
+
+.or h5 {
+    transform: translateY(50%);
+}
+
+.horizontalLine{
+  display: block;
+  left: 0px;
+  width: 55px;
+  height: 1px;
+  background: #80b435;
+  margin: 20px auto;
+}

@@ -1,0 +1,32 @@
+.quick-links li a:hover {
+    color: #ff8533;
+}
+
+.icon {
+    margin-top: 20px;
+}
+
+.icon i {
+    margin-right: 15px;
+}
+
+.icon .fa-facebook-f {
+    color: rgb(36, 36, 197);
+}
+
+.icon .fa-instagram {
+    color: rgb(225, 0, 255);
+}
+
+.icon .fa-twitter {
+    color: rgba(0, 217, 255, 0.863)
+}
+
+.icon .fa-youtube {
+    color: red
+}
+
+footer {
+    background: #f9f4f4;
+    padding: 30px 10px 10px;
+}

@@ -1,0 +1,36 @@
+﻿@model Matgary.DAL.Offer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <hr />
+    <div class="card mb-3">
+        <img class="card-img-top" src="..." alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title"> @Html.DisplayFor(model => model.Title)</h5>
+            <p class="card-text">
+                @Html.DisplayNameFor(model => model.Description): @Html.Raw(Model.Description) <br />
+                @Html.DisplayNameFor(model => model.Discount): @Html.DisplayFor(model => model.Discount) <br />
+                @Html.DisplayNameFor(model => model.ExpirationDateTime): @Html.DisplayFor(model => model.ExpirationDateTime) <br />
+                @Html.DisplayNameFor(model => model.OfferType): @Html.DisplayFor(model => model.OfferType) <br />
+                Product: @Html.DisplayFor(model => model.Product.Title) <br />
+                Category: @Html.DisplayFor(model => model.Category.Title) <br />
+            </p>
+            <p class="card-text"><small class="text-muted">Last updated @Html.DisplayFor(model => model.DateTime)</small></p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.env.isCompatible = true;
+        CKEDITOR.replace("DescriptionE");
+        CKEDITOR.replace("DescriptionA");
+    </script>
+}

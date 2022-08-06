@@ -1,0 +1,102 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<Matgary.DAL.UserStore>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="alert alert-info">Customers</h2>
+<br />
+
+@using (Html.BeginForm("Index", "Customer", FormMethod.Get))
+{
+    <div class="d-flex align-items-center">
+        @if (Session["Role"].ToString() == "SuperAdmin")
+        {
+            <label for="from">Store</label>
+            @Html.DropDownList("store", ViewBag.Stores as SelectList, "Select Store", new { @class = "form-control" })
+
+        }
+        <label for="customerId">Customer Id</label>
+        <input type="text" id="customerId" name="customerId" value="@Request.QueryString["customerId"]">
+
+        <label for="phoneNumber">Phone</label>
+        <input type="text" id="phone" name="phone" value="@Request.QueryString["phone"]">
+
+         <label for="name">name</label>
+        <input type="text" id="name" name="name" value="@Request.QueryString["name"]">
+
+        <button class="btn btn-primary">Filter</button>
+    </div>
+}
+
+<br />
+<br />
+<table class="table table-hover table-striped table-bordered">
+    <thead>
+        <tr>
+            @if (Session["Role"].ToString() == "SuperAdmin")
+            {
+                <th>Store</th>
+            }
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>Operations</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                @using (Html.BeginForm("Delete", "Customer", new { id = user.UserId,storeId=user.StoreId }, FormMethod.Post, null))
+                {
+                    if (Session["Role"].ToString() == "SuperAdmin")
+                    {
+                        <td>@string.Join("-", user.Store.Name)</td>
+                    }
+                    <td>@user.User.Id.ToString("0000")</td>
+                    <td>@user.Name</td>
+                    <td>@user.User.Email</td>
+                    <td>@user.Phone1</td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", "Customer", new { id = user.UserId,storeId= user.StoreId }, new { @class = "btn btn-info" }) |
+                        @*@Html.ActionLink("Orders", "OrderDetails", "Customer", new { id = user.UserId,storeId = user.StoreId }, new { @class = "btn btn-info" }) |*@
+                        <button class="btn btn-danger" type="submit" onclick="return confirm('are you sure you want to delete this user?')">Delete</button>
+                    </td>
+                }
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div class="text-center">
+    @Html.PagedListPager(Model,page => Url.Action("Index","Customer" ,new
+{
+    page = page,
+    store = Request.QueryString["store"],
+    phone = Request.QueryString["phone"],
+    name = Request.QueryString["name"],
+    customerId = Request.QueryString["customerId"],
+
+}),new PagedListRenderOptions()
+{
+    Display = PagedListDisplayMode.IfNeeded,
+    DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+    DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+    DisplayItemSliceAndTotal = true
+})
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('select#store').change(function () {
+                $('#StoreForm').submit();
+            });
+        });
+    </script>
+}

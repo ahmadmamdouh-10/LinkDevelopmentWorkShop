@@ -1,0 +1,20 @@
+﻿@using Matgary.DAL
+@if (Session["User"] != null)
+{
+
+    using (Html.BeginForm("LogOff", "User", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        <ul class="nav navbar-nav">
+            <li class="p-1">
+                @Html.ActionLink("Hello "+ Session["User"]+"!", "Index", "User", routeValues: null, htmlAttributes: new { title = "AdminName" ,style= "color:black" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()" class="btn" style="background: #d2348b;color: white">Log off</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Log in", "Login", "User", routeValues: null, htmlAttributes: new { id = "loginLink",@class="btn", style = "background: #d2348b;color: white" })</li>
+    </ul>
+}

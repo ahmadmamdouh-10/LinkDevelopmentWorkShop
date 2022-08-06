@@ -1,0 +1,31 @@
+
+.login {
+    background: #80b435;
+    border: 1px solid #80b435;
+    cursor: pointer;
+    font-weight: bolder;
+
+}
+
+.login:hover {
+    background: #fff;
+    border: 1px solid #80b435;
+    color: black;
+    font-weight: bolder;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+    border: 1px solid red;
+}
+
+.login-google {
+    border: none;
+}
+
+.login-google img {
+    width: 60px;
+    height: 150%;
+    top: 50px;
+    transform: translateY(-6px);
+}

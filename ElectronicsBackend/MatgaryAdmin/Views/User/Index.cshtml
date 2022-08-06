@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h2>Electronics Admin</h2>
+    <br />
+
+    @{if (Session["User"] == null)
+        {
+            <p>@Html.ActionLink("Log in", "Login", "User", new { @class = "btn btn-primary btn-lg" })</p>
+        }
+        else
+        {
+            <p>@Html.ActionLink("Log off", "LogOff", "User", new { @class = "btn btn-primary btn-lg" })</p>
+            <p>@Html.ActionLink("Edit Password", "Edit", "User", new { @class = "btn btn-primary btn-lg" })</p>
+
+        }
+    }
+</div>
+
+<div class="row">
+
+</div>

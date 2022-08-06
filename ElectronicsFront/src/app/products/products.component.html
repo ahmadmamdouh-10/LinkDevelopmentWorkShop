@@ -1,0 +1,125 @@
+<div class="container">
+  <div class="banner-header banner-lbook3 space-30"
+    style="height: 200px; background-color: lightgray; margin-bottom: 20px;">
+    <div class="text">
+      <h3>{{'All Products'}}</h3>
+      <p><a href="#" title="Home">Home</a><i class="fa fa-caret-right"></i>{{'All Products'}}</p>
+    </div>
+  </div>
+</div>
+<!-- End Banner Grid -->
+<div class="container">
+  <div id="primary" class="col-xs-12 col-md-9 float-left">
+    <ng-template #test>
+      <div class="products grid_full grid_sidebar hover-shadow furniture ver2">
+
+        <div class="item-inner" *ngFor="let product of products$|async">
+          <div class="product" style="height: 280px;"
+            (click)="getProductById(product.Id,productTemplate)">
+            <div class="product-images">
+              <a>
+                <img class="primary_image" style="height: 200px;" src="{{product.Images[0]}}" alt="" />
+                <img class="secondary_image" style="height: 200px;" src="{{product.Images[0]}}" alt="" />
+              </a>
+            </div>
+            <div style="background-color: lightgray;">
+              <a (click)="getProductById(product.Id,productTemplate)">
+                <p class="">{{ product.Title}}</p>
+              </a>
+              <p [innerHTML]="product.Description"></p>
+              <p>Price: {{product.Price}}</p>
+
+              <ng-container *ngIf="product.Discount > 0">
+                <strong style="text-decoration: line-through;" class="item-price text-success">
+                  {{product.Price}} {{product.Store.Currency}}
+                </strong>
+                <strong class="item-price text-success">
+                  {{(product.Price) - (product.Price * product.Discount /100)}} {{product.Store.Currency}}
+                </strong>
+
+                  <input type="number" name="quantity" placeholder="choose quantity you want to purchase" #quantity>
+                  <input type="button" value="buy" (click)="purchaseProduct(product.Id, quantity.value)">
+                  <span style="color: red;" *ngIf="isChoosed">{{result}}</span>
+
+              </ng-container>
+
+              <strong *ngIf="product.Discount == 0" class="item-price text-success">{{product.Price}} {{product.Store.Currency}}</strong>
+              <div class="star-rating">
+                <i class="fa fa-star" style="color: #FFD600;" *ngFor="let pro of [].constructor(product.Rate)"></i>
+                <i class="far fa-star" style="color: #FFD600;" *ngFor="let pro of [].constructor(5-product.Rate)"></i>
+              </div>
+
+
+            </div>
+          </div>
+          <!-- End product -->
+        </div>
+      </div>
+
+    </ng-template>
+
+    <div class="products grid_full grid_sidebar hover-shadow furniture ver2">
+      <div *ngIf="isSearch == true;else test">
+        <div class="item-inner" *ngFor="let product of products$|async">
+          <div class="product" style="height: 280px;"
+            (click)="getProductById(product.Id,productTemplate)">
+            <div class="product-images">
+              <a>
+                <img class="primary_image" style="height: 200px;" src="{{product.Images[0]}}" alt="" />
+                <img class="secondary_image" style="height: 200px;" src="{{product.Images[0]}}" alt="" />
+              </a>
+            </div>
+            <div style="background-color: lightgray;">
+              <a (click)="getProductById(product.Id,productTemplate)">
+                <p class="">{{product.Title}}</p>
+              </a>
+              <p [innerHTML]=" product.Description"></p>
+              <ng-container *ngIf="product.Discount > 0">
+                <strong style="text-decoration: line-through;" class="item-price text-success">
+                  {{product.Price}} {{product.Store.Currency}}
+                </strong>
+                <strong class="item-price text-success">
+                  {{(product.Price) - (product.Price * product.Discount /100)}} {{
+                  product.Store.Currency}}
+                </strong>
+
+                  <input type="number" name="quantity" placeholder="choose quantity you want to purchase" #quantity>
+                  <input type="button" value="buy" (click)="purchaseProduct(product, quantity.value)">
+                  <span style="color: red;" *ngIf="isChoosed">{{result}}</span>
+
+                </ng-container>
+              <strong *ngIf="product.Discount == 0" class="item-price text-success">{{product.Price}} {{ product.Store.Currency}}</strong>
+              <div class="star-rating">
+                <i class="fa fa-star" style="color: #FFD600;" *ngFor="let pro of [].constructor(product.Rate)"></i>
+                <i class="far fa-star" style="color: #FFD600;" *ngFor="let pro of [].constructor(5-product.Rate)"></i>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End product-content products  -->
+  </div>
+  <!-- End Primary -->
+
+  <div id="secondary" class="widget-area col-xs-12 col-md-3 float-right">
+    <aside class="widget widget_product_categories">
+      <h3 class="widget-title">{{'All Categories' }}</h3>
+      <ul class="product-categories">
+        <li class="border px-2 py-2 rounded mb-4" *ngFor="let category of categories$|async">
+          <a (click)="getProductByCategory(category.Title)"
+            class="mb-1 font-weight-normal h6 text-uppercase text-black d-flex filter align-items-center">
+            <img src="{{category.ImageUrl}}" width="50px" height="50px" alt=""
+              class="{{lang == 'ar' ? 'ml-1' : 'mr-1'}}"> {{category.Title}}</a>
+        </li>
+      </ul>
+    </aside>
+  </div>
+  <!-- End Secondary -->
+</div>
+
+
+
+<ng-template #productTemplate >
+</ng-template>

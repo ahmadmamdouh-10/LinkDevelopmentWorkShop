@@ -1,0 +1,64 @@
+
+<div id="back-to-top">
+  <i class="fa fa-long-arrow-up"></i>
+</div>
+<footer id="footer" class="footer-v3 align-left">
+  <div class="container container-ver2" *ngIf="aboutUS">
+    <div class="footer-inner">
+      <div class="row">
+        <div class="col-md-3 col-sm-6">
+          <h3 class="title-footer">{{'Contact Info'}}</h3>
+          <li class="address">{{aboutUS.Location}}</li>
+            <li class="phone"><a>{{aboutUS.Phone}}</a></li>
+            <li class="email">{{aboutUS.Contact}}</li>
+        </div>
+        <div class="col-md-2 col-sm-6">
+          <h3 class="title-footer">{{'Quick Links'}}</h3>
+          <ul class="list-footer">
+            <li><a [routerLink]="['/popular-products']">{{'Products'}}</a></li>
+            <li><a [routerLink]="['/about-us']">{{'About Us'}}</a></li>
+            <li><a [routerLink]="['/contact']">{{'Contact Us'}}</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <h3 class="title-footer">{{'Get It Touch'}}</h3>
+          <div class="social space-30">
+            <a href="{{aboutUS.FacebookLink}}"><i class="fa fa-facebook"></i></a>
+            <a href="{{aboutUS.InstagramLink}}"><i class="fa fa-instagram"></i></a>
+            <a href="{{aboutUS.TwitterLink}}"><i class="fa fa-twitter"></i></a>
+            <a href="{{aboutUS.YoutubeLink}}"><i class="fa fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <a href="{{aboutUS.ImageUrl}}" class="block-6">
+            <img src="{{aboutUS.ImageUrl}}" style="max-width: 200px;" class="img-fluid rounded mb-4">
+          </a>
+        </div>
+      </div>
+      <!-- End row -->
+    </div>
+    <!-- End footer-inner -->
+  </div>
+  <!-- End container -->
+  <div class="footer-bottom box">
+    <div class="container container-ver2">
+      <div class="box bottom">
+        <p class="float-left">Copyright &copy;
+          <script>
+            document.write(new Date().getFullYear());
+          </script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by
+          <a href="" target="_blank" class="text-primary">Ahmed Mamdouh</a>
+        </p>
+        <div class="float-right">
+          <ul class="menu-bottom-footer">
+            <li><a [routerLink]="['/popular-products']">{{'Products'}}</a></li>
+            <li><a [routerLink]="['/about-us']">{{'About Us'}}</a></li>
+            <li><a [routerLink]="['/contact']">{{'Contact Us'}}</a></li>
+          </ul>
+          <!-- End language -->
+        </div>
+      </div>
+    </div>
+    <!-- End container -->
+  </div>
+</footer>

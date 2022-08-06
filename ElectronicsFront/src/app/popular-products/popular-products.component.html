@@ -1,0 +1,53 @@
+<app-cover></app-cover>
+<div class="container"  style="margin-top: 50px;">
+  <div class="title-text-v2">
+    <h3>{{'Latest - Products'}}</h3>
+  </div>
+  <div class="featured-products home_2 new-arrivals lastest">
+    <ul class="tabs tabs-title">
+      <li class="item" rel="tab_1">{{'All Products'}}</li>
+    </ul>
+    <div class="tab-container space-10">
+      <div id="tab_1" class="tab-content active">
+        <div class="products hover-shadow ver2 border-space-product">
+          <div class="product" style="height: 280px;" *ngFor="let product of (products$|async)">
+            <div class="product-images">
+              <a>
+                <img class="primary_image" style="height: 200px;" src="{{product.ImageUrl}}" alt="" />
+                <img class="secondary_image" style="height: 200px;" src="{{product.ImageUrl}}" alt="" />
+              </a>
+            </div>
+            <div style="background-color: lightgray;">
+              <a>
+                <p class="">{{product.Title}}</p>
+              </a>
+              <p [innerHTML]="product.Description"></p>
+              <p><strong>{{'Price : '}}</strong>{{product.Price}}</p>
+
+              <ng-container *ngIf="product.Discount > 0">
+                <strong style="text-decoration: line-through;" class="item-price text-success">
+                  {{product.Price}} {{product.Store.Currency}}
+                </strong>
+                <strong class="item-price text-success">
+                  {{(product.Price) - (product.Price * product.Discount /100)}} {{product.Store.Currency}}
+                </strong>
+              </ng-container>
+
+              <strong *ngIf="product.Discount == 0" class="item-price text-success">{{product.Price}} {{product.Store.Currency}}</strong>
+              <div class="star-rating">
+                <i class="fa fa-star" style="color: #FFD600;" *ngFor="let pro of [].constructor(product.Rate)"></i>
+                <i class="far fa-star" style="color: #FFD600;" *ngFor="let pro of [].constructor(5-product.Rate)"></i>
+              </div>
+            </div>
+          </div>
+          <!-- End item -->
+        </div>
+        <!-- End product-tab-content products -->
+      </div>
+      <!-- End tab-content -->
+    </div>
+  </div>
+  <div class="box center space-padding-tb-30 space-30">
+    <button class="link-v1 color-brand font-300" type="button" (click)="showProducts()">{{'All Products'}}</button>
+  </div>
+</div>

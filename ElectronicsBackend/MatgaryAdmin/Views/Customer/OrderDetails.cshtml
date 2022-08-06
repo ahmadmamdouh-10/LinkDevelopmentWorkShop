@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Matgary.DAL.Order>
+@{
+    ViewBag.Title = "OrderDetails";
+}
+
+<h2 class="alert alert-info">User Orders</h2>
+
+<table class="table table-hover table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Contact</th>
+            <th>Address</th>
+            <th>Status</th>
+            <th>Total</th>
+            <th>Discount</th>
+            <th>TotalAfterDiscount</th>
+            <th>Operations</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.DateTime.ToString("R")</td>
+                <td>@order.Contact</td>
+                <td>@order.DeliveryAddress</td>
+                <td>@order.Status</td>
+                <td>@order.Total</td>
+                <td>@order.TotalDiscount</td>
+                <td>@order.TotalAfterDiscount</td>
+                <td>
+                    @Html.ActionLink("Show Products", "OrderProducts", "Customer", new { id = order.Id ,storeId=order.StoreId}, new { @class = "btn btn-info" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

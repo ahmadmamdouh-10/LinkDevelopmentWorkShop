@@ -1,0 +1,149 @@
+h2.title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 15px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    position: relative;
+    margin-top: 40px;
+}
+
+h2.title:before {
+    content: " ";
+    position: absolute;
+    background: #fff;
+    bottom: -6px;
+    width: 220px;
+    height: 30px;
+    z-index: -1;
+    left: 50%;
+    margin-left: -110px;
+}
+
+h2.title:after {
+    content: " ";
+    position: absolute;
+    border: 1px solid #f5f5f5;
+    bottom: 8px;
+    left: 0;
+    width: 100%;
+    height: 0;
+    z-index: -2;
+}
+
+.product-all {
+    color: #00cca3;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.buttons {
+    margin-top: 25px;
+    text-align: center;
+    position: absolute;
+    bottom: 0px;
+}
+
+.add-cart {
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    border: 1.5px solid #ff8533;
+    color: #00cca3;
+    text-decoration: none;
+    margin: 5px auto;
+}
+
+.add-cart {
+    padding: 5px 10px;
+    border: 1.5px solid #ff8533;
+    color: #00cca3;
+    text-decoration: none;
+    background-color: #fff;
+    width: 200px;
+}
+
+.add-cart:hover {
+    background-color: #ff8533;
+    border: 1.5px solid #ff8533;
+    color: #fff;
+}
+
+.filter {
+    color: #ff8533;
+}
+
+.description {
+    display: none;
+    /* display: block; */
+}
+
+.dropdown:hover .description {
+    display: block;
+}
+
+.description p {
+    color: #ff8533;
+}
+
+.product-item img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    top: 0;
+}
+
+.product-item.md-height {
+    padding: 0px;
+}
+
+.show-all {
+    color: #ff8533;
+    background: none;
+    border: none;
+}
+
+.in-cart {
+    background: #ff8533;
+    color: #fff;
+}
+
+.filter-price input {
+    width: 60px;
+    height: 27px;
+}
+
+.filter-price button {
+    background: #ff8533;
+    margin-left: 10px;
+    border: 1px solid #ff8533;
+    color: #fff;
+}
+
+.dropdown,
+.dropleft,
+.dropright,
+.dropup {
+    position: relative;
+    margin-bottom: 70px;
+}
+
+@media(max-width:770px) {
+    .buttons {
+        position: relative;
+    }
+}
+
+
+.border.px-2.py-2.rounded.mb-4:hover,.category-active {
+    background: #ff8533;
+    color: white;
+}
+.item-title a:hover{
+    cursor: pointer;
+    text-decoration: underline;
+} 
+.pop-image:hover{
+    cursor: pointer;
+
+}

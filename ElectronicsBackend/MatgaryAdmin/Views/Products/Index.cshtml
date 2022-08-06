@@ -1,0 +1,159 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<Matgary.DAL.Product>
+
+@{
+    ViewBag.Title = "Index";
+    List<SelectListItem> inStockSelectListItems = new List<SelectListItem>();
+    inStockSelectListItems.Add(new SelectListItem
+    {
+        Text = "All",
+        Value = "-1",
+    });
+    inStockSelectListItems.Add(new SelectListItem
+    {
+        Text = "InStock",
+        Value = "0",
+    });
+    inStockSelectListItems.Add(new SelectListItem
+    {
+        Text = "OutOfStock",
+        Value = "1"
+    });
+}
+
+<h2 class="alert alert-info">Index</h2>
+@if (Session["Role"].ToString() == "Admin")
+{
+    <p>
+        @Html.ActionLink("Create New", "Create", "Products", null, new { @class = "btn btn-primary" })
+    </p>
+}
+<div style="padding: 20px;border: 1px solid blue;margin-bottom: 20px;">
+    <div class="m-auto">
+        @using (Html.BeginForm("Index", "Products", FormMethod.Get, new { id = "productForm" }))
+        {
+            <div class="d-flex align-items-center w-100">
+                @if (Session["Role"] == "SuperAdmin")
+                {
+                    <label class="mr-1">Filter By Store : </label>
+                    @Html.DropDownList("store", ViewBag.Stores as SelectList, "Select Store", new { @class = "form-control" })
+                }
+
+                <label class="mr-1">Filter By Category : </label>
+                @Html.DropDownList("category", ViewBag.Categories as SelectList, "Select Category", new { @class = "form-control" })
+                
+                <label for="name" class="mr-1">Name</label>
+                <input type="text" value="@Request.QueryString["name"]" id="name" name="name" class="mr-1">
+                <label for="inStock" class="mr-1">Status</label>
+                @Html.DropDownList("inStock", inStockSelectListItems, "Select Status", new { @class = "mr-1" })
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        }
+    </div>
+</div>
+<table class="table table-hover table-sm table-bordered text-center">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Title)
+        </th>
+        <th>
+            Categories
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].Description)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model[0].Price)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model[0].Discount)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model[0].InStock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].DateTime)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            <span>@string.Join(" - ", item.ProductCategories.Select(c => c.Category.Title))</span>
+        </td>
+        <td>
+            @(item.Description ?? "No Data")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Discount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InStock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateTime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+    }
+
+</table>
+
+
+<div class="text-center">
+    @Html.PagedListPager(Model,page => Url.Action("Index","Products" ,new
+    {
+        page = page,
+        category = Request.QueryString["category"],
+        code = Request.QueryString["code"],
+        name = Request.QueryString["name"],
+        inStock = Request.QueryString["inStock"],
+
+    }),new PagedListRenderOptions()
+    {
+        Display = PagedListDisplayMode.IfNeeded,
+        DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+        DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+        DisplayItemSliceAndTotal = true
+    })
+</div>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('select#store').change(function () {
+                var storeId = $(this).val();
+                if (storeId == '')
+                    storeId = 0;
+                $.ajax({
+                    url: '@Url.Action("GetCategories","Products")?storeId=' + storeId,
+                    type: 'get'
+                }).done(function(data) {
+                    $('select#category').empty();
+                    $('select#category').append('<option value="">Select Category</option>');
+                    $.each(data,
+                        function (i, elm) {
+                            $('select#category').append('<option value="'+elm.Id+'">'+elm.TitleE+'</option>');
+                        });
+                }).fail(function(err) {
+                    console.log(err);
+                });
+            });
+        });
+    </script>
+}

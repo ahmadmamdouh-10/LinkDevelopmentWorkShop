@@ -1,0 +1,82 @@
+﻿@model Matgary.DAL.Product
+
+@{
+    ViewBag.Title = "Assign Products to Filters";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Product</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.Label("Choose Product", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("ProductId", new SelectList(ViewBag.Products, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Choose Filter", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("FilterId", new SelectList(ViewBag.Filters, "Value", "Text"),"Choose", htmlAttributes: new { id = "ddFilters", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-md-10">
+        <label for="ddFiltersData" class="control-label ">Choose Filter Data</label>
+        <select name="FilterData" id="ddFiltersData" class="form-control ">
+            <option disabled selected value="0" class="form-control ">Please Choose Filter</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Assign" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#ddFilters").change(function () {
+                $("#ddFiltersData").empty();
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("FiltersData")',
+                    dataType: 'json',
+                    data: { id: $("#ddFilters").val() },
+                    success: function (x) {
+                        $.each(x, function (i, member) {
+                            $("#ddFiltersData").append('<option value="'
+    + member.Value + '">'
+    + member.Text + '</option>');
+                        });
+                    },
+                    error: function (ex) {
+                        alert('Failed to retrieve filters' + ex);
+                    }
+                });
+                return false;
+            })
+        });
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

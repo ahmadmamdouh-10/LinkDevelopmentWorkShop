@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MatgaryAdmin.Models.UserViewModel>
+@{
+    ViewBag.Title = "Users";
+}
+
+<h2 class="alert alert-info">Users</h2>
+
+<table class="table table-hover table-striped table-bordered">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>Phone</th>
+        <th>City</th>
+        <th>Location</th>
+        <th>Created At</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@user.Name</td>
+            <td>@user.Email</td>
+            <td>@user.Gender</td>
+            <td>@user.Phone</td>
+            <td>@user.City.Name</td>
+            <td>@user.Location</td>
+            <td>@user.CreatedAt</td>
+        </tr>
+    }
+    </tbody>
+</table>

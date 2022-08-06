@@ -1,0 +1,54 @@
+﻿body {
+    /*padding-top: 50px;*/
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif') 50% 50% no-repeat rgb(249,249,249);
+}
+
+.pagination li {
+    padding: 5px;
+    border: 1px solid;
+    margin-right: 5px;
+    background: black;
+    color: white;
+}
+    .pagination li.active {
+        background: #007bff
+    }
+    .pagination a {
+    color: white;
+    padding: 10px
+}
+
+.pagination a:hover {
+    background: black;
+    color: white;
+    text-decoration: none
+}

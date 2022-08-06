@@ -1,0 +1,120 @@
+﻿@model IEnumerable<Matgary.DAL.About>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@if (Session["Role"].ToString() == "SuperAdmin")
+{
+    <div style="padding: 20px;border: 1px solid blue;margin-bottom: 20px;">
+        <div class="m-auto" style="width: 420px">
+            @using (Html.BeginForm("Index", "Abouts", FormMethod.Get, new { id = "StoreForm" }))
+            {
+                <div class="d-flex align-items-center">
+                    <label class="mr-1">Filter By Store : </label>
+                    @Html.DropDownList("store", ViewBag.Stores as SelectList, "Select Store", new { @class = "form-control" })
+                </div>
+            }
+        </div>
+    </div>
+
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Contact)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FacebookLink)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InstagramLink)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PintrestLink)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TwitterLink)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.YoutubeLink)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WhatsApp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateTime)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>     
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FacebookLink)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InstagramLink)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PintrestLink)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TwitterLink)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.YoutubeLink)
+            </td>
+            <td>
+                @Html.Raw(item.Description)
+            </td>
+            <td>
+                <img src="~/Content/images//@Html.DisplayFor(modelItem => item.ImageUrl)" class="thumbnail" style="width: 40px; height: 40px;" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WhatsApp)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTime)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('select#store').change(function () {
+                $('#StoreForm').submit();
+            });
+        });
+    </script>
+}

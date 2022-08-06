@@ -1,0 +1,121 @@
+﻿@using Matgary.DAL
+@model Matgary.DAL.Product
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Products", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Product</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.StoreId)
+    @Html.HiddenFor(model => model.ImageUrl)
+    @Html.HiddenFor(model => model.Discount)
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.InStock, htmlAttributes: new { @class = "control-label col-md-2 " })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.InStock)
+                @Html.ValidationMessageFor(model => model.InStock, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="row">
+        @Html.LabelFor(model => model.Description, "Description", htmlAttributes: new { @class = "control-label col-md-4", @Style = "text-align: left !important;" })
+    </div>
+    <div class="row form-group">
+        <div class="col-md-12">
+            @Html.TextAreaFor(model => model.Description, 2, 40, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.Label("Photo", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" id="Photo" name="upload" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryIds, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <select id="CategoryIds" name="CategoryIds" class="form-control" multiple="multiple">
+                @foreach (var cat in (List<Category>)ViewBag.Categories)
+                {
+                    if (Model.CategoryIds.Contains(cat.Id))
+                    {
+                        <option selected="selected" value="@cat.Id">@cat.Title</option>
+                    }
+                    else
+                    {
+                        <option value="@cat.Id">@cat.Title</option>
+                    }
+
+                }
+            </select>
+            @*@Html.DropDownListFor(c => c.CategoryIds, ViewBag.CategoryId as SelectList, htmlAttributes: new { @class = "form-control", multiple = "multiple" })*@
+            @Html.ValidationMessageFor(model => model.CategoryIds, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script>
+    
+    $(document).ready(function () {
+        $("select[name='SelectedData']").prepend('<option value="0">Not Set</option>');
+        $("#extraFilter").find('option[value="0"]').attr("selected", true);
+    });
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.env.isCompatible = true;
+        CKEDITOR.replace("Description");
+    </script>
+    
+}

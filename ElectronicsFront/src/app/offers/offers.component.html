@@ -1,0 +1,36 @@
+<div class="site-wrap">
+    <div class="site-blocks-cover inner-page" style="background-image: url('assets/images/hero_2.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center" data-aos="fade">
+        <div class="container">
+            <div class="row">
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <h2 class="title text-center">{{'Offers'}}</h2>
+                <div class="media commnets row" *ngFor="let new of offres$|async">
+                    <a class="pull-left col-md-4">
+                        <img class="media-object" src="{{ new.OfferInformation.ImageUrl}}" alt="">
+                    </a>
+                    <div class="media-body col-md-8 ">
+                        <div class="post-meta">
+                            <ul>
+                                <li><i class="fa fa-calendar"></i>{{new.OfferInformation.ExpirationDateTime | date}}</li>
+                            </ul>
+                        </div>
+                        <h4 class="media-heading">{{new.OfferInformation.Title}}</h4>
+                        <h4 class="media-heading">%{{new.OfferInformation.Discount}}</h4>
+                        <p [innerHTML]="new.OfferInformation.Description"></p>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

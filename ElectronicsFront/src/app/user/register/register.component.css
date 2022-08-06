@@ -1,0 +1,25 @@
+.login {
+  background: #80b435;
+  border: 1px solid #80b435;
+  font-weight: bolder;
+
+}
+
+.login:hover {
+  background: #fff;
+  border: 1px solid #80b435;
+  color: black;
+  font-weight: bolder;
+}
+
+.marg-left{
+  margin-left: 15px;
+}
+
+.form-check-label{
+  padding-left: 7px;
+}
+
+.marg-bt{
+  margin-bottom: 10px;
+}

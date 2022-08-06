@@ -1,0 +1,79 @@
+<div class="awe-page-loading">
+  <div class="awe-loading-wrapper">
+    <div class="awe-loading-icon">
+      <img src="../../assets/images/loader.gif" alt="images">
+    </div>
+    <div class="progress">
+      <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0"
+        aria-valuemax="100"></div>
+    </div>
+  </div>
+</div>
+<div class="wrappage">
+  <!-- <div id="rtl">RTL</div> -->
+  <header id="header" class="header-v3 header-v2">
+    <div id="topbar" class="topbar-ver2">
+      <div class="container container-ver2">
+        <div class="inner-topbar box">
+          <div class="float-left">
+            <!-- <p>{{userService.currentStoreName.value}}</p> -->
+          </div>
+          <div class="float-right">
+            <ng-container *ngIf="isLoggedIn()">
+              <div class="hover-menu" style="box-sizing: content-box; width: 100px;">
+                <a class="acc" href="#" title="Name"><img src="assets/images/icon-user-header.png"
+                    alt="icon">{{name||this.userService.currentUser.value?.Name}}</a>
+                <ul class="list-menu listMenu">
+                  <!-- <li><a [routerLink]="['/my-profile']">{{'My profile'}}</a></li>
+                  <li><a [routerLink]="['/my-orders']">{{'My orders'}}</a></li> -->
+                  <li><a style="cursor: pointer;" (click)="logout()">{{'Log Out'}}</a></li>
+                </ul>
+              </div>
+            </ng-container>
+            <div class="hover-menu">
+              <a routerLink="/auth-login" *ngIf="!isLoggedIn()">{{'Login'}}</a>
+            </div>
+            <!-- End hover-menu -->
+          </div>
+        </div>
+      </div>
+      <!-- End container -->
+    </div>
+    <!-- End topbar -->
+    <div class="header-top">
+      <div class="container container-ver2">
+        <div class="box">
+          <p class="icon-menu-mobile"><i class="fa fa-bars"></i></p>
+          <div class="logo"><a href="#" title="Uno">
+              <img src="../../assets/images/header33.png" alt="images" style="max-height: 85px;">
+            </a></div>
+          <div class="logo-mobile"><a href="#" title="Xanadu"><img [src]="userService.currentStoreLogo.value"
+                alt="Xanadu-Logo"></a></div>
+
+          <nav class="mega-menu">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <ul class="nav navbar-nav" id="navbar">
+              <!-- <li class="level1" routerLinkActive="active">
+                <a [routerLink]="['/home']">{{'Home'}}</a>
+              </li> -->
+              <li class="level1" routerLinkActive="active">
+                <a [routerLink]="['/about-us']">{{'About Us'}}</a>
+              </li>
+              <li class="level1" routerLinkActive="active"><a
+                  [routerLink]="['/popular-products']">{{'Products'}}</a>
+              </li>
+              <li class="level1" routerLinkActive="active">
+                <a [routerLink]="['/Offers']">{{'Offers'}}</a>
+              </li>
+              <!-- <li class="level1" routerLinkActive="active">
+                <a [routerLink]="['/contact']">{{'Contact'}}</a>
+              </li> -->
+
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <!-- End container -->
+    </div>
+    <!-- End header-top -->
+  </header><!-- /header -->

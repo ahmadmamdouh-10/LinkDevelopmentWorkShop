@@ -1,0 +1,53 @@
+﻿@model MatgaryAdmin.Models.ImageVideoUploadViewModel
+@{
+    ViewBag.Title = "HomePageBackgroundVideo";
+}
+
+<h2>HomePageBackgroundVideo</h2>
+
+@using (Html.BeginForm("HomePageBackgroundVideo", "Settings", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>HomePageBackgroundVideo</h4>
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.ImageUrl)
+
+        <div class="form-group">
+            <label>Current:</label>
+            <video width="400" controls>
+                <source src="~/Content/images//@Model.ImageUrl">
+            </video>
+        </div>
+
+        <hr />
+
+        <div class="form-group">
+            @Html.Label("New:", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" id="Photo" name="upload" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Upload" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "BackgroundsAndVideos")
+</div>
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
